@@ -14,9 +14,11 @@ Automatic installtion:
     gem install dwolla
 
 ## Usage
+```ruby
 
+```
 
-## Examples
+## Examples / Quickstart
 
 This repo includes various usage examples, including:
 
@@ -26,6 +28,10 @@ This repo includes various usage examples, including:
 * Grabbing a user's contacts [contacts.rb]
 * Listing a user's funding sources [fundingSources.rb]
 * Creating offsite gateway sessions [offsiteGateway.rb]
+
+## Methods
+
+
 
 ## Credits
 

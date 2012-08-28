@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'pp'
 require 'sinatra'
-require '/Users/michael/Repos/dwolla/dwolla-ruby/lib/dwolla.rb'
+require 'dwolla'
 
 # Include any required keys
 require '_keys.rb'
