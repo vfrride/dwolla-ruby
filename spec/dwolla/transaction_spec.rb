@@ -88,6 +88,37 @@ describe Dwolla::Transaction do
       end
     end
 
+    context "and assume costs" do
+      before do
+        @origin = double(:oauth_token => '1')
+        @destination = "user@example.com"
+        @destination_type = "email"
+        @payload = { :amount => 200,
+                     :pin => '1234',
+                     :destinationId => 'user@example.com',
+                     :destinationType => 'email',
+                     :assumeCosts => true,
+                     :oauth_token => '1' }
+        stub_post('/transactions/send').with(:body => MultiJson.dump(@payload)).to_return(
+                       :body => fixture('send_transaction.json'))
+      end
+
+      it "should request the correct resource" do
+        transaction = Dwolla::Transaction.new(:origin => @origin,
+                                              :destination => @destination,
+                                              :destination_type => @destination_type,
+                                              :type => :send,
+                                              :amount => 200,
+                                              :pin => '1234',
+                                              :assume_costs => true )
+                                              
+        transaction.execute
+
+        a_post('/transactions/send').
+          with(:body => MultiJson.dump(@payload)).should have_been_made
+      end
+    end
+
   end
 
   describe "request transaction" do

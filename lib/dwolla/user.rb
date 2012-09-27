@@ -55,7 +55,7 @@ module Dwolla
       instances_from_contacts(contacts)
     end
 
-    def send_money_to(destination, amount, pin, type='dwolla', description='', funds_source=nil)
+    def send_money_to(destination, amount, pin, type='dwolla', description='', funds_source=nil, assume_costs=nil)
       transaction = Transaction.new(:origin => self,
                                     :destination => destination,
                                     :destination_type => type,
@@ -63,7 +63,8 @@ module Dwolla
                                     :type => :send,
                                     :amount => amount,
                                     :pin => pin,
-                                    :funds_source => funds_source)
+                                    :funds_source => funds_source,
+                                    :assume_costs => assume_costs)
 
       transaction.execute
     end

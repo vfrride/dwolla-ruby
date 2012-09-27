@@ -58,7 +58,9 @@ describe Dwolla::User do
                                               :description => description,
                                               :amount => 10,
                                               :type => :send,
-                                              :pin => '2222').and_return(transaction)
+                                              :pin => '2222',
+                                              :funds_source=>nil,
+                                              :assume_costs=>nil).and_return(transaction)
 
         transaction.should_receive(:execute).and_return(transaction_id)
 
@@ -83,11 +85,65 @@ describe Dwolla::User do
                                               :description => description,
                                               :amount => 10,
                                               :type => :send,
-                                              :pin => '2222').and_return(transaction)
+                                              :pin => '2222',
+                                              :funds_source=>nil,
+                                              :assume_costs=>nil).and_return(transaction)
 
         transaction.should_receive(:execute).and_return(transaction_id)
 
         user.send_money_to(destination_user, amount, pin, 'email', description).should == 123
+      end
+    end
+    context "assume costs" do
+      it "should make the correct transaction and assume costs if set to true" do
+        user = Dwolla::User.new(:oauth_token => '12345', :id => '1')
+        destination_user = 'user@example.com'
+        description = "sending a transaction"
+        amount = 10
+        pin = '2222'
+
+
+        transaction = double('transaction')
+        transaction_id = 123
+
+        Dwolla::Transaction.should_receive(:new).with(:origin => user,
+                                              :destination => destination_user,
+                                              :destination_type => 'email',
+                                              :description => description,
+                                              :amount => 10,
+                                              :type => :send,
+                                              :pin => '2222',
+                                              :funds_source=>nil,
+                                              :assume_costs=>true).and_return(transaction)
+
+        transaction.should_receive(:execute).and_return(transaction_id)
+
+        user.send_money_to(destination_user, amount, pin, 'email', description, nil, true).should == 123
+      end
+      it "should make the correct transaction and assume costs if set to false" do
+        user = Dwolla::User.new(:oauth_token => '12345', :id => '1')
+        destination_user = 'user@example.com'
+        description = "sending a transaction"
+        amount = 10
+        pin = '2222'
+
+
+        transaction = double('transaction')
+        transaction_id = 123
+
+        Dwolla::Transaction.should_receive(:new).with(:origin => user,
+                                              :destination => destination_user,
+                                              :destination_type => 'email',
+                                              :description => description,
+                                              :amount => 10,
+                                              :type => :send,
+                                              :pin => '2222',
+                                              :funds_source=>nil,
+                                              :assume_costs=>false).and_return(transaction)
+
+        transaction.should_receive(:execute).and_return(transaction_id)
+
+        user.send_money_to(destination_user, amount, pin, 'email', description, nil, false).should == 123
       end
     end
   end
