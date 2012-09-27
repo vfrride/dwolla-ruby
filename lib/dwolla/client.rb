@@ -42,9 +42,8 @@ module Dwolla
     end
 
     private
-
       def auth_params
         { :client_id => @client, :client_secret => @secret }
       end
-   end
+    end
 end

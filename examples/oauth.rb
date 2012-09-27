@@ -2,10 +2,10 @@
 require 'rubygems'
 require 'pp'
 require 'sinatra'
-require 'dwolla'
+require '../lib/dwolla'
 
 # Include any required keys
-require '_keys.rb'
+require './_keys.rb'
 
 # Instantiate a new Dwolla User client
 # And, Sseed a previously generated access token

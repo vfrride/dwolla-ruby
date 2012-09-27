@@ -1,7 +1,7 @@
 # Include the Dwolla gem
 require 'rubygems'
 require 'pp'
-require 'dwolla'
+require '../lib/dwolla'
 
 # Include any required keys
 require '_keys.rb'

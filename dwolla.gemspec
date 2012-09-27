@@ -3,13 +3,13 @@ $:.push File.expand_path("../lib", __FILE__)
 require "dwolla/version"
 
 Gem::Specification.new do |s|
-  s.name        = "dwolla"
+  s.name        = "dwolla-ruby"
   s.version     = Dwolla::VERSION
   s.authors     = ["Jefferson Girao", "Michael Schonfeld"]
   s.email       = ["contato@jefferson.eti.br", "michael@dwolla.com"]
   s.homepage    = "https://github.com/dwolla/dwolla-ruby"
-  s.summary     = %q{Ruby Wrapper for Dwolla's API}
-  s.description = %q{Ruby Wrapper for Dwolla's API}
+  s.summary     = %q{Official Ruby Wrapper for Dwolla's API}
+  s.description = %q{Official Ruby Wrapper for Dwolla's API}
 
   s.rubyforge_project = "dwolla"
 
