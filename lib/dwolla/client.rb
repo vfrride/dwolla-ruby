@@ -10,6 +10,13 @@ module Dwolla
       user_attributes_hash = get("users/#{id}")
       User.new(user_attributes_hash)
     end
+    
+    def register_user(user_attributes_hash)
+      params = auth_params.merge(user_attributes_hash)
+      
+      returned_user_hash = post("register/", params)
+      User.new(returned_user_hash)
+    end
 
     def auth_url(redirect_uri=nil, scope='send|transactions|balance|request|contacts|accountinfofull|funding')
         params = {
