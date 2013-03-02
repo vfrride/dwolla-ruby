@@ -47,6 +47,13 @@ module Dwolla
       sources = get('fundingsources?fundingid=' + funding_id)
       sources.map{|s| FundingSource.from_json(s)}
     end
+    
+    def add_funding_source(funding_source_hash)
+      params = auth_params.merge(funding_source_hash)
+      
+      returned_source_hash = post("fundingsources/", params)
+      FundingSource.from_json(returned_source_hash)
+    end
 
     def contacts(options = {})
       contacts_url = 'contacts'

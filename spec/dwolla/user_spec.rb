@@ -175,6 +175,26 @@ describe Dwolla::User do
       @account.should be_verified
     end
   end
+  
+  describe "adding a funding source" do
+    it "should create a funding source" do
+      user = Dwolla::User.new(:oauth_token => '12345', :id => '1')
+      
+      stub_post('/fundingsources/').
+        to_return(:body => fixture("add_funding_source.json"))
+    
+      sourcehash = {
+        "account_number" => "4434343434",
+        "routing_number" => "343434343434",
+        "account_type" => "checking",
+        "name" => "My Checking Account - Checking"
+      }
+      
+      funding_source = user.add_funding_source(sourcehash)
+      funding_source.name.should eq 'My Checking Account - Checking'
+    end
+    
+  end
 
   describe "contacts" do
     it "should request the correct resource when unfiltered" do
