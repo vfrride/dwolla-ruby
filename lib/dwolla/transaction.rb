@@ -14,7 +14,7 @@ module Dwolla
     TEST_ENDPOINTS = { :send => 'testapi/send',
                   :request => 'testapi/request' }
 
-    attr_accessor :origin, :destination, :destination_type, :type, :amount, :pin, :id, :source, :source_type, :description, :funds_source
+    attr_accessor :origin, :destination, :destination_type, :type, :amount, :pin, :id, :source, :source_type, :description, :funds_source, :assume_costs
 
     def initialize(attrs = {})
       attrs.each do |key, value|
@@ -48,6 +48,7 @@ module Dwolla
         payload[:sourceType] = source_type if source_type
         payload[:notes] = description if description
         payload[:fundsSource] = funds_source if funds_source
+        payload[:assumeCosts] = assume_costs if assume_costs
 
         payload
       end
