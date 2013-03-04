@@ -8,10 +8,11 @@
 - [Ruby](http://www.ruby-lang.org/)
 
 ## Installation
+The easiest way to install the dwolla gem for now is to use bundler and add the following line to your Gemfile:
 
-Automatic installtion:
+gem 'dwolla', :git => 'git://github.com/Dwolla/dwolla-ruby.git'
 
-    gem install dwolla
+If you install via Rubygems you will install the original Dwolla gem which no longer works with the current API.  The rubygems.org gem should be updated shortly to fix this problem.
 
 ## Usage
 ```ruby
