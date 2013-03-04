@@ -151,30 +151,6 @@ describe Dwolla::User do
     user.balance.should == 55.76
   end
   
-  describe "Getting a list of funding sources" do
-    before :each do
-      user = Dwolla::User.me(oauth_token)
-      stub_request(:get, "https://www.dwolla.com/oauth/rest/fundingsources?oauth_token=valid_token").
-               with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json', 'User-Agent'=>'Dwolla Ruby Wrapper'}).
-               to_return(:body => fixture("sources.json"))
-      @account = user.funding_sources.first
-    end
-    it "should be a FundingSource object" do
-      @account.should be_kind_of(Dwolla::FundingSource)
-    end
-    it "should get the correct id" do
-      @account.id.should == "mE06khgHy9K/Ii9n5fbUEg=="
-    end
-    it "should get the right name" do
-      @account.name.should == "Checking - My Bank"
-    end
-    it "should get the right type" do
-      @account.type.should == "Checking"
-    end
-    it "should get whether the account is verified" do
-      @account.should be_verified
-    end
-  end
 
   describe "contacts" do
     it "should request the correct resource when unfiltered" do
