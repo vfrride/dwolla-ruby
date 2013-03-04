@@ -24,4 +24,28 @@ describe Dwolla::Client do
       user.longitude.should == -93.634167
     end
   end
+  
+  describe "registering a user" do
+    it 'should register a user and return a user object' do
+      stub_post('/register/').
+        to_return(:body => fixture("register.json"))
+    
+      userhash = {"email" => "test@test.com",
+        "password" => "Asdfasdf43434",
+        "pin" => "4343",
+        "firstName" => "Test",
+        "lastName" => "User",
+        "address" => "204 W. Test St.",
+        "city" => "Lansing",
+        "state" => "MI",
+        "zip" => "48906",
+        "phone" => "5175557621",
+        "dateOfBirth" => "07-12-1983",
+        "type" => "Personal",
+        "acceptTerms" => "true"}
+      
+      user = subject.register_user(userhash)
+      user.name.should eq 'Test User'
+    end
+  end
 end

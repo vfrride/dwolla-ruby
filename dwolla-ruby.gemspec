@@ -5,13 +5,13 @@ require "dwolla/version"
 Gem::Specification.new do |s|
   s.name        = "dwolla-ruby"
   s.version     = Dwolla::VERSION
-  s.authors     = ["Jefferson Girao", "Michael Schonfeld"]
-  s.email       = ["contato@jefferson.eti.br", "michael@dwolla.com"]
+  s.authors     = ["Michael Schonfeld"]
+  s.email       = ["michael@dwolla.com"]
   s.homepage    = "https://github.com/dwolla/dwolla-ruby"
   s.summary     = %q{Official Ruby Wrapper for Dwolla's API}
   s.description = %q{Official Ruby Wrapper for Dwolla's API}
 
-  s.rubyforge_project = "dwolla"
+  s.rubyforge_project = "dwolla-ruby"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'faraday', '= 0.7.6'
-  s.add_dependency 'multi_json', '= 1.3.6'
+  s.add_dependency 'multi_json', '~> 1.3'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'

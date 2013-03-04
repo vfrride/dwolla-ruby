@@ -47,6 +47,28 @@ module Dwolla
       sources = get('fundingsources?fundingid=' + funding_id)
       sources.map{|s| FundingSource.from_json(s)}
     end
+    
+    def add_funding_source(funding_source_hash)
+      params = auth_params.merge(funding_source_hash)
+      
+      returned_source_hash = post("fundingsources/", params)
+      FundingSource.from_json(returned_source_hash)
+    end
+
+    def deposit_funds(funding_id, pin, amount)
+      params = auth_params.merge(:pin => pin, :amount => amount, :funding_id => funding_id)
+      
+      returned_hash = post("fundingsources/#{funding_id}/deposit", params)
+      returned_hash
+    end
+
+    def withdraw_funds(funding_id, pin, amount)
+      params = auth_params.merge(:pin => pin, :amount => amount, :funding_id => funding_id)
+      
+      returned_hash = post("fundingsources/#{funding_id}/withdraw", params)
+      returned_hash
+    end
+
 
     def contacts(options = {})
       contacts_url = 'contacts'
@@ -55,7 +77,7 @@ module Dwolla
       instances_from_contacts(contacts)
     end
 
-    def send_money_to(destination, amount, pin, type='dwolla', description='', funds_source=nil)
+    def send_money_to(destination, amount, pin, type='dwolla', description='', funds_source=nil, assume_costs=nil)
       transaction = Transaction.new(:origin => self,
                                     :destination => destination,
                                     :destination_type => type,
@@ -63,7 +85,8 @@ module Dwolla
                                     :type => :send,
                                     :amount => amount,
                                     :pin => pin,
-                                    :funds_source => funds_source)
+                                    :funds_source => funds_source,
+                                    :assume_costs => assume_costs)
 
       transaction.execute
     end

@@ -8,15 +8,15 @@
 - [Ruby](http://www.ruby-lang.org/)
 
 ## Installation
+The easiest way to install the dwolla-ruby gem for now is to use bundler and add the following line to your Gemfile:
 
-The recommended way to install dwolla-php is through RubyGems:
+  gem 'dwolla-ruby'
 
-    gem install dwolla-ruby
+The recommended way to install dwolla-ruby is through RubyGems:
+
+  gem install dwolla-ruby
 
 ## Usage
-```ruby
-
-```
 
 ## Examples / Quickstart
 
@@ -92,8 +92,8 @@ Helper Methods:
 
 This wrapper is a forked extension of Jefferson Girao's &lt;@jeffersongirao&gt; 'dwolla' module.
 
-- Jefferson Girão &lt;contato@jefferson.eti.br&gt;
 - Michael Schonfeld &lt;michael@dwolla.com&gt;
+- Jefferson Girão &lt;contato@jefferson.eti.br&gt;
 
 ## Support
 
@@ -108,7 +108,7 @@ http://developers.dwolla.com/dev
 
 (The MIT License)
 
-Copyright (c) 2012 Dwolla &lt;michael@dwolla.com&gt;
+Copyright (c) 2013 Dwolla &lt;michael@dwolla.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
