@@ -7,17 +7,17 @@ require 'multi_json'
 # Version
 require "dwolla/version"
 
-# API operations
-require "dwolla/client"
-require "dwolla/transaction"
-require "dwolla/funding_source"
-require "dwolla/user"
-
 # Resources
 require "dwolla/connection"
 require "dwolla/response/parse_json"
 require "dwolla/response/follow_redirects"
 require "dwolla/response/guard_server_error"
+
+# API operations
+require "dwolla/client"
+require "dwolla/transaction"
+require "dwolla/funding_source"
+require "dwolla/user"
 
 # Errors
 require "dwolla/exceptions"
